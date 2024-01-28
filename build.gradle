@@ -1,0 +1,42 @@
+plugins {
+    id 'java'
+    id "io.qameta.allure" version "2.11.2"
+}
+allure {
+    version.set("2.19.0")
+    adapter {
+        allureJavaVersion.set("2.19.0")
+        aspectjVersion.set("1.9.5")
+        frameworks {
+            junit5 {
+                adapterVersion.set("2.19.0")
+            }
+
+        }
+    }
+}
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+compileJava.options.encoding = 'UTF-8'
+javadoc.options.encoding = 'UTF-8'
+compileTestJava.options.encoding = 'UTF-8'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+dependencies {
+    testImplementation(
+            'org.junit.jupiter:junit-jupiter:5.10.1',
+            'com.codeborne:selenide:6.17.0',
+            'io.qameta.allure:allure-selenide:2.25.0'
+    )
+}
+
+test {
+    useJUnitPlatform()
+}
