@@ -40,3 +40,9 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
+task main_page(type:Test){
+    useJUnitPlatform{
+        includeTags("main")
+    }
+}
