@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import pageobjects.mainPage;
 
 import static com.codeborne.selenide.Selenide.open;
+import static io.qameta.allure.Allure.step;
 
 public class mainPageTests extends baseTest {
     mainPage mainPage = new mainPage();
@@ -16,7 +17,10 @@ public class mainPageTests extends baseTest {
     @Tag("main")
     @Test
     void checkHeaderContainer(){
-        open(baseUrl);
+        step("Открываем главную страницу", () -> {
+            open(baseUrl);
+        });
+
         mainPage.checkCategoriesLink();
         mainPage.checkSourceLink();
         mainPage.checkAllCoursesLink();
