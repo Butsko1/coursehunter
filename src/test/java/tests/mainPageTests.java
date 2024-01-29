@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pageobjects.mainPage;
 
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.open;
 import static io.qameta.allure.Allure.step;
 
@@ -14,18 +15,27 @@ public class mainPageTests extends baseTest {
     @Feature("Главная страница")
     @Story("Проверка блока заголовков")
     @DisplayName("Проверка наименований ссылок")
-    @Tag("main")
+    @Tag("main_page")
+    @Tag("headers")
     @Test
     void checkHeaderContainer(){
         step("Открываем главную страницу", () -> {
             open(baseUrl);
         });
-
-        mainPage.checkCategoriesLink();
-        mainPage.checkSourceLink();
-        mainPage.checkAllCoursesLink();
-        mainPage.checkTopicsLink();
-        mainPage.checkBooksLink();
-
+        step("Проверяем ссылку - Категории", () ->{
+            mainPage.categoriesLink.shouldHave(text("Категории"));
+        });
+        step("Проверяем ссылку - Все курсы",() ->{
+            mainPage.allCoursesLink.shouldHave(text("Все курсы"));
+        });
+        step("Проверяем ссылку - Источники",() ->{
+            mainPage.sourceLink.shouldHave(text("Источники"));
+        });
+        step("Проверяем ссылку - Топики", () ->{
+            mainPage.topicsLink.shouldHave(text("Топики"));
+        });
+        step("Проверяем ссылку - Книги",() -> {
+            mainPage.booksLink.shouldHave(text("Книги"));
+        });
     }
 }

@@ -43,6 +43,12 @@ test {
 
 task main_page(type:Test){
     useJUnitPlatform{
-        includeTags("main")
+        includeTags("main_page")
+    }
+}
+
+task headers(type: Test){
+    useJUnitPlatform{
+        includeTags("headers")
     }
 }
