@@ -38,4 +38,22 @@ public class mainPageTests extends baseTest {
             mainPage.booksLink.shouldHave(text("Книги"));
         });
     }
+    @Feature("Главная страница")
+    @Story("Проверка блока заголовков")
+    @DisplayName("Проверка открытия/закрытия строки поиска")
+    @Tag("main_page")
+    @Tag("headers")
+    @Test
+    void checkInputSearch(){
+        step("Открываем главную страницу", () -> {
+            open(baseUrl);
+        });
+        step("Нажимаем на кнопку лупы, проверяем доступность строки поиска и плейсхолдер",() ->{
+            mainPage.checkInputSearchAppear();
+        });
+        step("Наживаем на кнопку \"Esc\" в строке поиска и проверяем, что cтрока исчезла",() ->{
+            mainPage.checkInputDisappear();
+        });
+
+    }
 }
