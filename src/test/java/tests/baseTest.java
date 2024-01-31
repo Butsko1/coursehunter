@@ -12,7 +12,6 @@ import java.net.URI;
 import java.util.Map;
 
 public class baseTest {
-    static String baseUrl = "https://coursehunter.net/";
 
     @BeforeAll
     static void setUp(){

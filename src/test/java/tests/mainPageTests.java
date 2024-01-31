@@ -18,9 +18,9 @@ public class mainPageTests extends baseTest {
     @Tag("main_page")
     @Tag("headers")
     @Test
-    void checkHeaderContainer(){
+    void headerContainerTest(){
         step("Открываем главную страницу", () -> {
-            open(baseUrl);
+            open(mainPage.baseUrl);
         });
         step("Проверяем ссылку - Категории", () ->{
             mainPage.categoriesLink.shouldHave(text("Категории"));
@@ -44,9 +44,9 @@ public class mainPageTests extends baseTest {
     @Tag("main_page")
     @Tag("headers")
     @Test
-    void checkInputSearch(){
+    void inputSearchTest(){
         step("Открываем главную страницу", () -> {
-            open(baseUrl);
+            open(mainPage.baseUrl);
         });
         step("Нажимаем на кнопку лупы, проверяем доступность строки поиска и плейсхолдер",() ->{
             mainPage.checkInputSearchAppear();
@@ -56,4 +56,63 @@ public class mainPageTests extends baseTest {
         });
 
     }
+    @Feature("Главная страница")
+    @Story("Проверка блока заголовков")
+    @DisplayName("Проверка работы корзины")
+    @Tag("main_page")
+    @Tag("headers")
+    @Test
+    void basketLinkTest(){
+        step("Открываем главную страницу", () -> {
+            open(mainPage.baseUrl);
+        });
+        step("Проверяем наличие ссылки-корзины, кликаем и проверяем урл", () -> {
+            mainPage.checkBasketLink();
+        });
+    }
+    @Feature("Главная страница")
+    @Story("Проверка блока заголовков")
+    @DisplayName("Проверка работы ссылки Sign Up")
+    @Tag("main_page")
+    @Tag("headers")
+    @Test
+    void signUpLinkTest(){
+        step("Открываем главную страницу", () -> {
+            open(mainPage.baseUrl);
+        });
+        step("Проверяем наличие ссылки Sign Up, кликаем и проверяем урл",() ->{
+            mainPage.checkSignUpLink();
+        });
+    }
+
+    @Feature("Главная страница")
+    @Story("Проверка блока заголовков")
+    @DisplayName("Проверка работы ссылки Sign In")
+    @Tag("main_page")
+    @Tag("headers")
+    @Test
+    void signInLinkTest(){
+        step("Открываем главную страницу", () -> {
+            open(mainPage.baseUrl);
+        });
+        step("Проверяем наличие ссылки Sign In, кликаем и проверяем урл",() ->{
+            mainPage.checkSignInLink();
+        });
+    }
+
+    @Feature("Главная страница")
+    @Story("Проверка блока заголовков")
+    @DisplayName("Проверка работы ссылки Категории")
+    @Tag("main_page")
+    @Tag("headers")
+    @Test
+    void categoriesLinkTest(){
+        step("Открываем главную страницу", () -> {
+            open(mainPage.baseUrl);
+        });
+        step("Проверяем работу ссылки Категории",() ->{
+            mainPage.checkCategoriesLink();
+        });
+    }
+
 }
