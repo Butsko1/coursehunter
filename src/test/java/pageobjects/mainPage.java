@@ -7,84 +7,123 @@ import static com.codeborne.selenide.WebDriverRunner.url;
 import static io.qameta.allure.Allure.step;
 
 public class mainPage {
-    public String baseUrl = "https://coursehunter.net/";
-    public String pricingUrl = baseUrl + "pricing";
-    public String signUpUrl = baseUrl + "sign-up";
-    public String signInUrl = baseUrl + "sign-in";
-    public String categoriesUrl = baseUrl + "category";
-    public SelenideElement categoriesLink = $("ul.nav-container>li:first-child");
-    public SelenideElement categoriesDropList = $("ul.nav-container>li:first-child>ul");
-    public SelenideElement sourceLink = $("ul.nav-container>li:nth-child(2)");
-    public SelenideElement allCoursesLink = $("ul.nav-container>li:nth-child(3)");
-    public SelenideElement topicsLink = $("ul.nav-container>li:nth-child(4)");
-    public SelenideElement booksLink = $("ul.nav-container>li:nth-child(5)");
-    public SelenideElement searchButton = $("button.main-header-search");
-    public SelenideElement searchInput = $("#mainSearch");
-    public SelenideElement closeSearchButton = $("button.main-search-close");
-    public SelenideElement basketLink = $("a.main-header-basket");
-    public SelenideElement signUpLink = $("a.main-header-donate");
-    public SelenideElement signInLink = $("a.main-header-link");
+
+
+
+
+
+
     public void checkInputSearchAppear(){
         step("Проверяем видимость кнопки",() ->{
-            searchButton.shouldBe(visible);
+            buttons.searchButton.shouldBe(visible);
         });
         step("Кликаем на кнопку",() ->{
-            searchButton.click();
+            buttons.searchButton.click();
         });
         step("Проверяем появление строки поиска и плейсхолдер", () ->{
-            searchInput.shouldBe(visible);
-            searchInput.shouldHave(attribute("placeholder", "Кто ищет, тот всегда найдет! \uD83D\uDC1E"));
+            inputs.searchInput.shouldBe(visible);
+            inputs.searchInput.shouldHave(attribute("placeholder", "Кто ищет, тот всегда найдет! \uD83D\uDC1E"));
         });
     }
     public void checkInputDisappear(){
         step("Кликаем на кнопку Esc",() ->{
-            closeSearchButton.click();
+            buttons.closeSearchButton.click();
         });
         step("Проверяем, что строка поиска исчезла",() ->{
-            searchInput.shouldNotBe(visible);
+            inputs.searchInput.shouldNotBe(visible);
         });
     }
 
     public void checkBasketLink(){
         step("Проверяем видимость ссылки",() ->{
-            basketLink.shouldBe(visible);
+            links.basketLink.shouldBe(visible);
         });
         step("Кликаем на ссылку и проверяем URL",() ->{
-            basketLink.click();
-            Assertions.assertEquals(pricingUrl,url());
+            links.basketLink.click();
+            Assertions.assertEquals(urls.pricingUrl,url());
         });
     }
     public void checkSignUpLink(){
         step("Проверяем видимость ссылки",() ->{
-            signUpLink.shouldBe(visible);
+            links.signUpLink.shouldBe(visible);
         });
         step("Кликаем на ссылку и проверяем URL",() ->{
-            signUpLink.click();
-            Assertions.assertEquals(signUpUrl,url());
+            links.signUpLink.click();
+            Assertions.assertEquals(urls.signUpUrl,url());
         });
     }
     public void checkSignInLink(){
         step("Проверяем видимость ссылки",() ->{
-            signInLink.shouldBe(visible);
+            links.signInLink.shouldBe(visible);
         });
         step("Кликаем на ссылку и проверяем URL",() ->{
-            signInLink.click();
-            Assertions.assertEquals(signInUrl,url());
+            links.signInLink.click();
+            Assertions.assertEquals(urls.signInUrl,url());
         });
     }
     public void checkCategoriesLink(){
         step("Проверяем видимость ссылки и текст",() ->{
-            categoriesLink.shouldBe(visible);
-            categoriesLink.shouldHave(text("Категории"));
+            links.categoriesLink.shouldBe(visible);
+            links.categoriesLink.shouldHave(text("Категории"));
         });
         step("Наводим мышку и проверяем наличие выпадающего списка",() ->{
-            categoriesLink.hover();
-            categoriesDropList.shouldBe(visible);
+            links.categoriesLink.hover();
+            dropLists.categoriesDropList.shouldBe(visible);
         });
         step("Кликаем на ссылку и проверяем URL", () ->{
-            categoriesLink.click();
-            Assertions.assertEquals(categoriesUrl,url());
+            links.categoriesLink.click();
+            Assertions.assertEquals(urls.categoriesUrl,url());
         });
+    }
 
+    public void checkSourceLink(){
+        step("Проверяем видимость ссылки и текст",() ->{
+            links.sourceLink.shouldBe(visible);
+            links.sourceLink.shouldHave(text("Источники"));
+        });
+        step("Кликаем на ссылку и проверяем URL",() ->{
+            links.sourceLink.click();
+            Assertions.assertEquals(urls.sourseUrl,url());
+        });
+    }
+
+    public void checkAllCoursesLink(){
+        step("Проверяем видимость ссылки и текст",() ->{
+            links.allCoursesLink.shouldBe(visible);
+            links.allCoursesLink.shouldHave(text("Все курсы"));
+        });
+        step("Наводим мышку и проверяем наличие выпадающего списка",() ->{
+            links.allCoursesLink.hover();
+            dropLists.allCoursesDropList.shouldBe(visible);
+        });
+        step("Кликаем на ссылку и проверяем URL", () ->{
+            links.allCoursesLink.click();
+            Assertions.assertEquals(urls.allCoursesUrl,url());
+        });
+    }
+    public void checkTopicsLink(){
+        step("Проверяем видимость ссылки и текст",() ->{
+            links.topicsLink.shouldBe(visible);
+            links.topicsLink.shouldHave(text("Топики"));
+        });
+        step("Кликаем на ссылку и проверяем URL",() ->{
+            links.topicsLink.click();
+            Assertions.assertEquals(urls.topicsUrl,url());
+        });
+    }
+
+    public void checkBooksLink(){
+        step("Проверяем видимость ссылки и текст",() ->{
+            links.booksLink.shouldBe(visible);
+            links.booksLink.shouldHave(text("Книги"));
+        });
+        step("Наводим мышку и проверяем наличие выпадающего списка",() ->{
+            links.booksLink.hover();
+            dropLists.booksDropList.shouldBe(visible);
+        });
+        step("Кликаем на ссылку и проверяем URL", () ->{
+            links.booksLink.click();
+            Assertions.assertEquals(urls.booksUrl,url());
+        });
     }
 }
