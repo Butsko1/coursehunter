@@ -55,3 +55,9 @@ task headers(type: Test){
         includeTags("headers")
     }
 }
+
+task categories(type:Test){
+    useJUnitPlatform{
+        includeTags("categories")
+    }
+}

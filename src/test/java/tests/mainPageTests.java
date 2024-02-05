@@ -4,6 +4,9 @@ import io.qameta.allure.Story;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
+import org.junit.jupiter.params.provider.CsvSource;
 import pageobjects.mainPage;
 import pageobjects.urls;
 import static com.codeborne.selenide.Condition.text;
@@ -147,6 +150,20 @@ public class mainPageTests extends baseTest {
         step("Проверяем работу ссылки Книги",() ->{
             mainPage.checkBooksLink();
         });
+    }
+    @CsvFileSource(resources ="/csv/mainPageTestsCsv")
+    @Feature("Главная страница")
+    @Story("Проверка блока категорий")
+    @Tag("categories")
+    @ParameterizedTest(name = "Проверка переходов по ссылкам в блоке 'Категории', Категория: {0}")
+    void linksFromDescTests(String title){
+        step("Открываем главную страницу", () -> {
+            open(urls.baseUrl);
+        });
+        step("Проверяем ссылку " + title, () -> {
+            mainPage.checkLinksFromDesc(title);
+        });
+
     }
 
 }
